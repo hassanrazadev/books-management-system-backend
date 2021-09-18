@@ -36,4 +36,14 @@ class AuthController extends Controller {
     protected function getAccessToken($user) {
         return $user->createToken(config('app.name'))->accessToken;
     }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function logout(Request $request): JsonResponse {
+        auth()->logout();
+        $this->setMessage('Logout success!');
+        return $this->getApiResponse();
+    }
 }

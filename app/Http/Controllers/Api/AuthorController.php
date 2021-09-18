@@ -35,7 +35,9 @@ class AuthorController extends Controller {
      * @return AnonymousResourceCollection
      */
     public function index(Request $request): AnonymousResourceCollection {
-        $authors = $this->author->newQuery()->orderBy($request->column, $request->order)->paginate($request->per_page ?? 5);
+        $authors = $this->author->newQuery()->when($request->order, function ($q) use ($request) {
+            $q->orderBy($request->column, $request->order);
+        })->paginate($request->per_page ?? 5);
         return AuthorResource::collection($authors);
     }
 

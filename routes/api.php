@@ -41,6 +41,8 @@ Route::middleware('auth:api')->group(function () {
         Route::post('/{book}/update', [BookController::class, 'update']);
         Route::delete('/{book}', [BookController::class, 'destroy']);
     });
+
+    Route::post('logout', [AuthController::class, 'logout']);
 });
 
 
