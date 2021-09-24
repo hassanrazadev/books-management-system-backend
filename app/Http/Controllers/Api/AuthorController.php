@@ -42,6 +42,18 @@ class AuthorController extends Controller {
     }
 
     /**
+     * @param Author $author
+     * @return JsonResponse
+     */
+    public function view(Author $author): JsonResponse {
+        $author->load('books');
+        $this->setData([
+            'author' => new AuthorResource($author)
+        ]);
+        return $this->getApiResponse();
+    }
+
+    /**
      * @param StoreAuthorRequest $request
      * @return JsonResponse
      */

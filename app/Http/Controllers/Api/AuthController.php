@@ -42,7 +42,7 @@ class AuthController extends Controller {
      * @return JsonResponse
      */
     public function logout(Request $request): JsonResponse {
-        auth()->logout();
+        auth()->user()->token()->delete();
         $this->setMessage('Logout success!');
         return $this->getApiResponse();
     }

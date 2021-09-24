@@ -22,11 +22,15 @@ class Book extends Model implements HasMedia {
         $this->addMediaCollection('image')->singleFile();
     }
 
+    public function getFallbackMediaUrl(string $collectionName = 'default'): string {
+        return asset('assets/img/default-book.png');
+    }
+
     /**
      * @return string
      */
     public function getImageAttribute(): string {
-        return $this->getFirstMedia('image')->getFullUrl();
+        return asset($this->getFirstMediaUrl('image'));
     }
 
     /**

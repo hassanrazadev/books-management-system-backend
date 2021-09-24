@@ -21,6 +21,7 @@ Route::middleware('auth:api')->group(function () {
     Route::prefix('authors')->group(function () {
         Route::get('/', [AuthorController::class, 'index']);
         Route::get('/all', [AuthorController::class, 'all']);
+        Route::get('/{author}', [AuthorController::class, 'view']);
         Route::post('/store', [AuthorController::class, 'store']);
         Route::post('/{author}/update', [AuthorController::class, 'update']);
         Route::delete('/{author}', [AuthorController::class, 'destroy']);

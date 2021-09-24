@@ -35,7 +35,7 @@ class Author extends Model implements HasMedia {
      * @return string
      */
     public function getImageAttribute(): string {
-        return $this->getFirstMediaUrl('image');
+        return asset($this->getFirstMediaUrl('image'));
 
     }
 
@@ -50,14 +50,14 @@ class Author extends Model implements HasMedia {
      * @param $dateOfBirth
      */
     public function setDateOfBirthAttribute($dateOfBirth) {
-        $this->attributes['date_of_birth'] = Carbon::createFromFormat('m/d/Y', $dateOfBirth)->format('Y-m-d');
+        $this->attributes['date_of_birth'] = Carbon::parse($dateOfBirth)->format('Y-m-d');
     }
 
     /**
      * @param $dateOfDeath
      */
     public function setDateOfDeathAttribute($dateOfDeath) {
-        $this->attributes['date_of_death'] = Carbon::createFromFormat('m/d/Y', $dateOfDeath)->format('Y-m-d');
+        $this->attributes['date_of_death'] = Carbon::parse($dateOfDeath)->format('Y-m-d');
     }
 
     /**

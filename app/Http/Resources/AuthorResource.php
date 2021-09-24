@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -16,7 +17,8 @@ class AuthorResource extends JsonResource {
      */
     public function toArray($request) {
         $author = parent::toArray($request);
-        $author['created_at'] = (string)$author['created_at'];
+        $author['created_at'] = Carbon::parse($author['created_at'])->format('Y-m-d');
+        $author['updated_at'] = Carbon::parse($author['updated_at'])->format('Y-m-d');
         unset($author['media']);
         return  $author;
     }
